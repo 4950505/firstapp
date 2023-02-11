@@ -1,6 +1,7 @@
 'use strict'
 
-const numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', 15);
+const numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+console.log(numberOfFilms);
 
 const personalMovieDB = {
   count: numberOfFilms,
@@ -10,16 +11,29 @@ const personalMovieDB = {
   privat: false,
 }
 
-let a = prompt('Один из последних просмотренных фильмов?', 'Звёздные войны');
-let b = prompt('На сколько оцените его?', '8.1');
+for (let i = 0; i < 2; i++) {
+  const a = prompt('Один из последних просмотренных фильмов?', 'Звёздные войны'),
+        b = prompt('На сколько оцените его?', '8.1');
+  if (a && a.length < 50 && b) {
+    personalMovieDB.movies[a] = b;
+    personalMovieDB.count += 1;  
+  } else {
+    alert('Введи нормально сука ебаная');
+    i--;
+  
+  }
+}
 
-personalMovieDB.movies[a] = b;
 
-a = prompt('Один из последних просмотренных фильмов?', 'Звёздные войны');
-b = prompt('На сколько оцените его?', '8.1');
 
-personalMovieDB.movies[a] = b;
-
+if (personalMovieDB.count < 10) {
+  console.log('Вы мало лох');
+} else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
+  console.log('Вы классичский лох');
+} else if (personalMovieDB.count > 30) {
+  console.log('Да вы кинолох батенька');
+} else {
+  console.log('товарищ сталин произошла чудовишная ошибко!');
+}
 
 console.log(personalMovieDB);
-console.log(personalMovieDB.movies);
